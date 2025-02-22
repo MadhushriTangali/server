@@ -1,0 +1,61 @@
+GET http://localhost:4000/tasks
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkYW1AZ21haWwuY29tIiwiaWF0IjoxNzM5Nzg4NDYzfQ.cODWNv-GMy8iCP-pkgUQcxvcIyDM98mb7eP6JFsnDb4
+
+###
+POST http://localhost:4000/tasks
+Content-Type:application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkYW1AZ21haWwuY29tIiwiaWF0IjoxNzM5Nzg4NDYzfQ.cODWNv-GMy8iCP-pkgUQcxvcIyDM98mb7eP6JFsnDb4
+
+{
+  "title": "Yoga",
+  "description": "Yoga is very beneficial",
+  "status": "In Progress",
+  "due_date": "23-3-2000",
+  "user_id":1
+}
+
+###
+DELETE http://localhost:4000/tasks/7
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkYW1AZ21haWwuY29tIiwiaWF0IjoxNzM5Nzg4NDYzfQ.cODWNv-GMy8iCP-pkgUQcxvcIyDM98mb7eP6JFsnDb4
+
+###
+PUT http://localhost:4000/tasks/6
+Content-Type: application/json 
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkYW1AZ21haWwuY29tIiwiaWF0IjoxNzM5Nzg4NDYzfQ.cODWNv-GMy8iCP-pkgUQcxvcIyDM98mb7eP6JFsnDb4
+
+{
+  "title": "Homework",
+  "description": "Homework makes perfect",
+  "due_date": "23-3-2000",
+}
+
+###
+
+PUT http://localhost:4000/tasks/status/1
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkYW1AZ21haWwuY29tIiwiaWF0IjoxNzM5Nzg4NDYzfQ.cODWNv-GMy8iCP-pkgUQcxvcIyDM98mb7eP6JFsnDb4
+
+{
+    "status": "Completed"
+}
+
+###
+POST http://localhost:4000/signup
+Content-Type:application/json
+
+{
+  "name": "Adam Richard",
+  "email": "adam@gmail.com",
+  "password": "richard_567",
+  "created_at": "3-4-2000"
+}
+
+###
+
+POST http://localhost:4000/login
+Content-Type:application/json
+
+{
+  "email": "adam@gmail.com",
+  "password": "richard_567"
+}
