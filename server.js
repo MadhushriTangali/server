@@ -72,13 +72,13 @@ app.delete('/tasks/:id', authenticationToken, async (request, response) => {
 app.put('/tasks/:id', authenticationToken, async (request, response) => {
   const {id} = request.params
   const {title, description, due_date} = request.body
-  let updateTask = `
+  let updateTaskTitle = `
         UPDATE tasks
         SET title='${title}',
         description='${description}',
         due_date='${due_date}'
         WHERE id=${id};`
-  await db.run(updateTask)
+  await db.run(updateTaskTitle)
   response.send('Task updated')
 })
 
