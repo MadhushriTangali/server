@@ -9,7 +9,11 @@ app.use(express.json())
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const cors = require('cors')
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:3000',  
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 let db
 
@@ -26,27 +30,6 @@ const initializeDb = async () => {
   }
 }
 initializeDb()
-
-const authenticationToken = async (request, response, next) => {
-  let jwtToken
-  let header = request.headers['authorization']
-  if (header !== undefined) {
-    jwtToken = header.split(' ')[1]
-  }
-  if (jwtToken === undefined) {
-    response.status(401)
-    response.send('Invalid JWT Token')
-  } else {
-    jwt.verify(jwtToken, 'SECREAT_KEY', (error, payload) => {
-      if (error) {
-        response.status(401)
-        response.send('Invalid JWT Token')
-      } else {
-        next()
-      }
-    })
-  }
-}
 
 app.get('/tasks', async (request, response) => {
   const getTasks = `SELECT * FROM tasks`
