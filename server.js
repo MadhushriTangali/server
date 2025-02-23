@@ -117,6 +117,12 @@ app.post('/signup', async (request, response) => {
   }
 })
 
+app.get('/users',async (request,response)=>{
+    const getUsers=`SELECT * FROM users;`
+    const usersArray=await db.all(getUsers)
+    response.send(usersArray)
+})
+
 app.post('/login', async (request, response) => {
   let {email, password} = request.body
   let getUserQuery = `
