@@ -48,13 +48,13 @@ const authenticationToken = async (request, response, next) => {
   }
 }
 
-app.get('/tasks', authenticationToken, async (request, response) => {
+app.get('/tasks', async (request, response) => {
   const getTasks = `SELECT * FROM tasks`
   const tasksArray = await db.all(getTasks)
   response.send(tasksArray)
 })
 
-app.post('/tasks', authenticationToken, async (request, response) => {
+app.post('/tasks', async (request, response) => {
   const {title, description, status, due_date, user_id} = request.body
   const postTasks = `INSERT INTO tasks(title,description,status,due_date,user_id) VALUES(
     '${title}','${description}','${status}','${due_date}',${user_id});`
@@ -62,14 +62,14 @@ app.post('/tasks', authenticationToken, async (request, response) => {
   response.send('Task Added')
 })
 
-app.delete('/tasks/:id', authenticationToken, async (request, response) => {
+app.delete('/tasks/:id', async (request, response) => {
   const {id} = request.params
   const deleteTask = `DELETE FROM tasks WHERE id=${id};`
   await db.run(deleteTask)
   response.send('Task Deleted')
 })
 
-app.put('/tasks/:id', authenticationToken, async (request, response) => {
+app.put('/tasks/:id', async (request, response) => {
   const {id} = request.params
   const {title, description, due_date} = request.body
   let updateTaskTitle = `
@@ -82,7 +82,7 @@ app.put('/tasks/:id', authenticationToken, async (request, response) => {
   response.send('Task updated')
 })
 
-app.put('/tasks/status/:id', authenticationToken, async (request, response) => {
+app.put('/tasks/status/:id', async (request, response) => {
   const {id} = request.params
   const {status} = request.body
   let updateTask = `
